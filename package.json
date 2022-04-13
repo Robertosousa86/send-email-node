@@ -4,7 +4,7 @@
   "description": "Um formulário de envio de e-mail com  integração com NodeJs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
