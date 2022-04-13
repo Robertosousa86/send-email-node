@@ -1,0 +1,22 @@
+{
+  "name": "send-email-node",
+  "version": "1.0.0",
+  "description": "Um formulário de envio de e-mail com  integração com NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Robertosousa86/send-email-node.git"
+  },
+  "keywords": [
+    "Node-Nodemailer-email-API-html-css"
+  ],
+  "author": "Roberto Sousa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Robertosousa86/send-email-node/issues"
+  },
+  "homepage": "https://github.com/Robertosousa86/send-email-node#readme"
+}
