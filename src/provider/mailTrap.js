@@ -10,12 +10,15 @@ const transport = nodemailer.createTransport({
   },
 });
 
-const message = transport.sendMail({
-  from: 'sender@server.com',
-  to: 'receiver@sender.com',
-  subject: 'Message title',
-  text: 'Plaintext version of the message',
-  html: '<p>HTML version of the message</p>',
-});
+const sendMessage = (clientEmail, subject, text) => {
+  const message = transport.sendMail({
+    from: 'sender@server.com',
+    to: clientEmail,
+    subject: subject,
+    text: text,
+  });
 
-module.exports = message;
+  return message;
+};
+
+module.exports = sendMessage;
