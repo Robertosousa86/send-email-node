@@ -1,13 +1,15 @@
-const message = require('../provider/mailTrap');
+const sendMessage = require('../provider/mailTrap');
 
 class sendEmail {
   async postEmail(req, res) {
     try {
-      await message;
+      const { clientEmail, subject, text } = req.body;
 
-      return res.status(200).send('Email enviado com sucesso!');
+      await sendMessage(clientEmail, subject, text);
+
+      return res.status(200).send({ message: 'Email enviado com sucesso!' });
     } catch (err) {
-      return res.status(400).send({ message: err });
+      return res.status(400).send({ message: 'Erro ao enviar email' });
     }
   }
 }
