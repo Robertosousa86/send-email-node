@@ -10,10 +10,10 @@ const transport = nodemailer.createTransport({
   },
 });
 
-const sendMessage = (clientEmail, subject, text) => {
+const sendMessage = (email, subject, text) => {
   const message = transport.sendMail({
-    from: 'sender@server.com',
-    to: clientEmail,
+    from: '<sender@server.com>',
+    to: email,
     subject: subject,
     text: text,
   });
