@@ -16,4 +16,10 @@ describe('sendEmail', () => {
 
     expect(res.body).toHaveProperty('message');
   });
+
+  it('should return 400 when an error occurs when sending an email', async () => {
+    const res = await request(app).post('/').send(emailTest);
+
+    expect(res.statusCode).toBe(400);
+  });
 });
