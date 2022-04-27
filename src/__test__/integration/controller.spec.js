@@ -22,4 +22,20 @@ describe('sendEmail', () => {
 
     expect(res.statusCode).toBe(400);
   });
+
+  it('should be return message: `Erro ao enviar Email.` when an error occurs and the status code is 400', async () => {
+    const res = await request(app).post('/').send(emailTest);
+
+    const response = {
+      status: res.statusCode,
+      message: res.body.message,
+    };
+
+    const expectedResponse = {
+      status: 400,
+      message: 'Erro ao enviar Email.',
+    };
+
+    expect(response).toMatchObject(expectedResponse);
+  });
 });
