@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "test": "jest",
-    "test:integration": "jest --watch"
+    "test:e2e": "jest --watch"
   },
   "repository": {
     "type": "git",
