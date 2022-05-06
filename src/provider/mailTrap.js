@@ -1,6 +1,8 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
+const ejs = require('ejs');
+
 const transport = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: process.env.EMAIL_PORT,
@@ -10,15 +12,20 @@ const transport = nodemailer.createTransport({
   },
 });
 
-const sendMessage = (email, subject, text) => {
-  const message = transport.sendMail({
-    from: '<sender@server.com>',
-    to: email,
-    subject: subject,
-    text: text,
-  });
+const sendMessage = async (email, subject, text) => {
+  await ejs.renderFile(__dirname + '/../views/pages/index.ejs', (err, data) => {
+    if (err) return res.status(400).send({ message: err });
 
-  return message;
+    const message = transport.sendMail({
+      from: '<sender@server.com>',
+      to: email,
+      subject: subject,
+      text: text,
+      html: data,
+    });
+
+    return message;
+  });
 };
 
 module.exports = sendMessage;
