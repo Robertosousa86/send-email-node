@@ -4,6 +4,7 @@
   "description": "Um formulário de envio de e-mail com  integração com NodeJs",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/server.js",
     "dev": "nodemon src/server.js",
     "test": "jest",
     "test:e2e": "jest --watch"
