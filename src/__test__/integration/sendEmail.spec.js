@@ -17,13 +17,13 @@ describe('sendEmail', () => {
     expect(res.body).toHaveProperty('message');
   });
 
-  it('should return 400 when an error occurs when sending an email', async () => {
+  it('should return 500 when an error occurs when sending an email', async () => {
     const res = await request(app).post('/').send(emailTest);
 
-    expect(res.statusCode).toBe(400);
+    expect(res.statusCode).toBe(500);
   });
 
-  it('should be return message: `O campo email deve ser preenchido.` when an error occurs and the status code is 400', async () => {
+  it('should be return message: `No recipients defined.` when an error occurs and the status code is 500', async () => {
     const res = await request(app).post('/').send(emailTest);
 
     const response = {
@@ -32,8 +32,8 @@ describe('sendEmail', () => {
     };
 
     const expectedResponse = {
-      status: 400,
-      message: 'O campo email deve ser preenchido.',
+      status: 500,
+      message: 'No recipients defined',
     };
 
     expect(response).toMatchObject(expectedResponse);
