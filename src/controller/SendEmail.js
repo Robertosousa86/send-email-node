@@ -1,16 +1,23 @@
 const sendMessage = require('../provider/mailTrap');
-const emptyEmailField = require('../error/emptyEmailField');
 
 class SendEmail {
-  postEmail(req, res) {
+  async postEmail(req, res) {
+    const objRequest = {
+      email: req.body.email,
+      titulo: req.body.subject,
+      texto: req.body.text,
+    };
     try {
-      const { email, subject, text } = req.body;
+      for (const key in objRequest) {
+        if (!objRequest[key])
+          return res.status(400).json({ message: `Preencha o campo ${key}` });
+      }
 
-      sendMessage(email, subject, text);
+      await sendMessage(objRequest);
 
-      return res.status(200).send({ message: 'Email enviado com sucesso!' });
-    } catch (error) {
-      return emptyEmailField(res, error);
+      return res.status(200).json({ message: 'Email enviado com sucesso!' });
+    } catch (err) {
+      return res.status(500).json({ message: err.message });
     }
   }
 }
